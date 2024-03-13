@@ -23,8 +23,11 @@ class Author:
         return list(set(article.magazine for article in self._articles))
 
 
+    
+
 class Magazine:
     _magazines = []
+
     def __init__(self, name, category):
         if not isinstance(name, str):
             raise ValueError("Name must be of type str")
@@ -37,6 +40,7 @@ class Magazine:
         self._name = name
         self._category = category
         self._articles = []
+        Magazine._magazines.append(self)
 
     @property
     def name(self):
@@ -56,7 +60,13 @@ class Magazine:
 
     def contributors(self):
         return list(set(article.author for article in self._articles))
-        return max(cls.magazines, key=lambda mag: len(mag.articles))
+
+    @classmethod
+    def top_publisher(cls):
+        if not cls._magazines:
+            return None
+        return max(cls._magazines, key=lambda mag: len(mag.articles))
+
 
 
 
@@ -74,8 +84,8 @@ class Article:
         self._author = author
         self._magazine = magazine
         self._title = title
-        author.add_article(self)
-        magazine.add_article(self)
+        author.add_article(self) 
+        magazine.add_article(self) 
 
     @property
     def author(self):
@@ -100,3 +110,6 @@ class Article:
     @title.setter
     def title(self, title):
         self._title = title
+
+        
+        
