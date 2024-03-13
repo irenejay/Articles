@@ -66,10 +66,12 @@ class Magazine:
         if not cls._magazines:
             return None
         return max(cls._magazines, key=lambda mag: len(mag.articles))
-
-
-
-
+    
+    def contributing_authors(self):
+        authors = [author for author in self.contributors() if len(author.articles()) > 2]
+        if not authors:
+            return None
+        return authors
 
 class Article:
     def __init__(self, author, magazine, title):
