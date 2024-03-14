@@ -7,7 +7,7 @@ from magazine import Magazine
 try: 
   #create an author instance 
   author1 = Author("Irene")
-  print("Author namr" , author1.name)
+  print("Author name" , author1.name)
 
   # test other methods 
 
